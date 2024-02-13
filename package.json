@@ -1,7 +1,7 @@
 {
-  "name": "asap",
+  "name": "s51_harmony_hub",
   "version": "1.0.0",
-  "description": "",
+  "description": "Project Title: HARMONY HUB (Music Library Management system)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
