@@ -1,0 +1,9 @@
+*{
+    background-color: black;
+}
+.details{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
