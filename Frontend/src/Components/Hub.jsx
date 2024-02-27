@@ -1,8 +1,15 @@
-import React from "react"
-import data from "../data.json"
+import React, {useEffect, useState} from "react"
 import "./Hub.css"
+import axios from 'axios'
 
 function Hub (){
+    const[data,setData]=useState([])
+    useEffect(()=>{
+        axios.get('http://localhost:3000/getallharmonyhub')
+        .then((response)=> {setData(response.data);
+        console.log(response.data)})
+        .catch(error =>console.error(error))
+    }, [])
     return (
         <>
         <h1>Profile</h1>

@@ -3,7 +3,7 @@ const Schema=mongoose.schema
 
 const userInfo=mongoose.Schema({
     ID:{type:String},
-    NAME:{type:String},
+    USERNAME:{type:String},
     EMAIL:{type:String},
     MOVIENAME:{type:String},
     SONGNAME:{type:String},
