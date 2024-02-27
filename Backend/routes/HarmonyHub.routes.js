@@ -4,7 +4,7 @@ const getRouter = express.Router();
 const postRouter = express.Router();
 const putRouter = express.Router();
 const deleteRouter = express.Router();
-const HarmonyHub = require("../Backend/Model/HarmonyHub.model");
+const HarmonyHub = require("../Model/HarmonyHub.model");
 
 getRouter.get('/getallharmonyhub', async (req, res) => {
     try {
