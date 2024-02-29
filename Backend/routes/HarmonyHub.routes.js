@@ -37,8 +37,8 @@ getRouter.get('/getharmonyhub/:id', async (req, res) => {
 
 postRouter.post('/addharmonyhub', async (req, res) => {
     try {
-        const {ID,NAME,EMAIL,MOVIENAME,SONGNAME,SONGLINK,LYRICSLINK,ARTIST} = req.body
-        const newHarmonyHub = await HarmonyHub.create({ID,NAME,EMAIL,MOVIENAME,SONGNAME,SONGLINK,LYRICSLINK,ARTIST});
+        const {ID,USERNAME,EMAIL,MOVIENAME,SONGNAME,SONGLINK,LYRICSLINK,ARTIST} = req.body
+        const newHarmonyHub = await HarmonyHub.create({ID,USERNAME,EMAIL,MOVIENAME,SONGNAME,SONGLINK,LYRICSLINK,ARTIST});
         res.status(201).json(newHarmonyHub);
     } catch (err) {
         console.log(err);
