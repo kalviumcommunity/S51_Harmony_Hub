@@ -5,7 +5,7 @@ import axios from 'axios'
 function Hub (){
     const[data,setData]=useState([])
     useEffect(()=>{
-        axios.get('http://localhost:3000/getallharmonyhub')
+        axios.get('https://s51-harmony-hub.onrender.com/getallharmonyhub')
         .then((response)=> {setData(response.data);
         console.log(response.data)})
         .catch(error =>console.error(error))
