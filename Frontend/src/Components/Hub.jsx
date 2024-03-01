@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react"
 import "./Hub.css"
 import axios from 'axios'
+import {Link} from "react-router-dom"
 
 function Hub (){
     const[data,setData]=useState([])
@@ -10,6 +11,15 @@ function Hub (){
         console.log(response.data)})
         .catch(error =>console.error(error))
     }, [])
+
+    const deleteData=(id)=>{
+        axios.delete(`https://s51-harmony-hub.onrender.com/deleteharmonyhub/${id}`,)
+        .then((response)=>{ console.log(response.data);
+            window.location.reload()})
+        .catch((error)=> console.error(error)) 
+              
+    }
+
     return (
         <>
         <h1>Profile</h1>
@@ -38,7 +48,9 @@ function Hub (){
                 </div>
                 <div className="details">
                     <p>ARTIST:  </p> {profile.ARTIST}
-                </div>                        
+                </div>
+                <Link to='/update'><button>Update</button></Link>
+                <button onClick={(e)=>deleteData(profile.ID)}>Delete</button>               
             </div>
         ))}
         </>
