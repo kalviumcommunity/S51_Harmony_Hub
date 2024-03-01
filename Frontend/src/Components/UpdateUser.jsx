@@ -1,40 +1,71 @@
-import React from "react";
+import React,{useState} from "react";
+import axios from "axios";
 
 function UpdateUser () {
+    const [id,setId]=useState("")
+    const [name,setName]=useState("")
+    const [email,setEmail]=useState("")
+    const [moviename,setMovieName]=useState("")
+    const [songname,setSongName]=useState("")
+    const [songlink,setSongLink]=useState("")
+    const [lyricslink,setLyricsLink]=useState("")
+    const [artist,setArtist]=useState("")
+
+    const Formsubmit=(e)=>{
+
+        e.preventDefault();
+        axios.patch(`https://s51-harmony-hub.onrender.com/updateharmonyhub/${id}`,{
+        ID:id,
+        USERNAME:name,
+        EMAIL:email,
+        MOVIENAME:moviename,
+        SONGNAME:songname,
+        SONGLINK:songlink,
+        LYRICSLINK:lyricslink,
+        ARTIST:artist
+    })
+    .then((response)=>{ console.log(response.data);})
+    .catch((error)=> console.error(error))
+    }
+
     return(
-        <div>
+        <div className="create">
             <div>
-                <form>
+                <form onSubmit={Formsubmit}>
                     <h2>Update User</h2>
+                    <div className="div8">
+                        <label>Id</label>
+                        <input type="text" placeholder="Enter Id" className="details" onChange={(e)=>setId(e.target.value)}/>
+                    </div>
                     <div className="div1">
-                        <label htmlFor="">Name</label>
-                        <input type="text" placeholder="Enter Name" className="details"/>
+                        <label>Name</label>
+                        <input type="text" placeholder="Enter Name" className="details" onChange={(e)=>setName(e.target.value)}/>
                     </div>
                     <div className="div2">
-                        <label htmlFor="">Email</label>
-                        <input type="text" placeholder="Enter Email" className="details" />
+                        <label>Email</label>
+                        <input type="text" placeholder="Enter Email" className="details" onChange={(e)=>setEmail(e.target.value)}/>
                     </div>
                     <div className="div3">
-                        <label htmlFor="">MovieName</label>
-                        <input type="text" placeholder="Enter MovieName" className="details" />
+                        <label>MovieName</label>
+                        <input type="text" placeholder="Enter MovieName" className="details" onChange={(e)=>setMovieName(e.target.value)}/>
                     </div>
                     <div className="div4">
-                        <label htmlFor="">SongName</label>
-                        <input type="text" placeholder="Enter SongName" className="details" />
+                        <label>SongName</label>
+                        <input type="text" placeholder="Enter SongName" className="details" onChange={(e)=>setSongName(e.target.value)}/>
                     </div>
                     <div className="div5">
-                        <label htmlFor="">SongLink</label>
-                        <input type="text" placeholder="Enter SongLink" className="details" />
+                        <label>SongLink</label>
+                        <input type="text" placeholder="Enter SongLink" className="details" onChange={(e)=>setSongLink(e.target.value)}/>
                     </div>
                     <div className="div6">
-                        <label htmlFor="">LyricsLink</label>
-                        <input type="text" placeholder="Enter LyricsLink" className="details" />
+                        <label>LyricsLink</label>
+                        <input type="text" placeholder="Enter LyricsLink" className="details" onChange={(e)=>setLyricsLink(e.target.value)}/>
                     </div>
                     <div className="div7">
-                        <label htmlFor="">Artist</label>
-                        <input type="text" placeholder="Enter Artist" className="details" />
+                        <label>Artist</label>
+                        <input type="text" placeholder="Enter Artist" className="details" onChange={(e)=>setArtist(e.target.value)}/>
                     </div>
-                    <button className="submit">Update</button>
+                    <button type="submit" className="submit">Submit</button>
                 </form>
             </div>
         </div>
