@@ -78,7 +78,7 @@ putRouter.patch('/updateharmonyhub/:id', async (req, res) => {
 deleteRouter.delete('/deleteharmonyhub/:id', async (req, res) => {
     try {
         const harmonyHubId = req.params.id;
-        const deletedHarmonyHub = await HarmonyHub.findOneAndDelete({harmonyHubId});     
+        const deletedHarmonyHub = await HarmonyHub.findOneAndDelete({"ID":harmonyHubId});     
         res.status(200).json("deleted HarmonyHub");
     } catch (err) {
         console.log(err);
