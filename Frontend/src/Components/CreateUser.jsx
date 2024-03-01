@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import './CreateUser.css'
 import axios from "axios";
+import './Hub.css'
 
 function CreateUser () {
     const [id,setId]=useState("")
@@ -25,7 +26,8 @@ function CreateUser () {
         LYRICSLINK:lyricslink,
         ARTIST:artist
     })
-    .then((response)=>{ console.log(response.data);})
+    .then((response)=>{ console.log(response.data);
+    })
     .catch((error)=> console.error(error))
     }
 

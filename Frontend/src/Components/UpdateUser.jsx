@@ -1,5 +1,7 @@
 import React,{useState} from "react";
 import axios from "axios";
+import './Hub.css'
+import { useNavigate } from "react-router-dom";
 
 function UpdateUser () {
     const [id,setId]=useState("")
@@ -10,7 +12,7 @@ function UpdateUser () {
     const [songlink,setSongLink]=useState("")
     const [lyricslink,setLyricsLink]=useState("")
     const [artist,setArtist]=useState("")
-
+    const navigate=useNavigate()
     const Formsubmit=(e)=>{
 
         e.preventDefault();
@@ -24,7 +26,8 @@ function UpdateUser () {
         LYRICSLINK:lyricslink,
         ARTIST:artist
     })
-    .then((response)=>{ console.log(response.data);})
+    .then((response)=>{ console.log(response.data);
+    navigate('/')})
     .catch((error)=> console.error(error))
     }
 
