@@ -22,7 +22,8 @@ function Hub (){
 
     return (
         <>
-        <h1>Profile</h1>
+        <div className="container">
+        <h1 className="profile">Profile</h1>
         {data.map((profile,index)=>(
             <div key={index} className="profile">
                 <div className="details">
@@ -49,10 +50,16 @@ function Hub (){
                 <div className="details">
                     <p>ARTIST:  </p> {profile.ARTIST}
                 </div>
-                <Link to='/update'><button>Update</button></Link>
-                <button onClick={(e)=>deleteData(profile.ID)}>Delete</button>               
+
+                <div className="button">
+                <Link to='/update'><button className="update">Update</button></Link>
+                <button className="delete" onClick={(e)=>deleteData(profile.ID)}>Delete</button>
+                </div>
+                               
             </div>
         ))}
+        </div>
+        
         </>
     )
 }

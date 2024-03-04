@@ -12,7 +12,9 @@ function UpdateUser () {
     const [songlink,setSongLink]=useState("")
     const [lyricslink,setLyricsLink]=useState("")
     const [artist,setArtist]=useState("")
+    
     const navigate=useNavigate()
+
     const Formsubmit=(e)=>{
 
         e.preventDefault();
