@@ -1,9 +1,22 @@
 *{
     background-color: black;
 }
-.details{
+
+
+.container{
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
+/* .button{
+    height: 2vh;
+    width: 6vw;
+}
+.update{
+    background-color: green;
+}
+.delete{
+    background-color: red;
+} */

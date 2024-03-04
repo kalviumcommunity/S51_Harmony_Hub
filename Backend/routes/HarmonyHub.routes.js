@@ -5,6 +5,17 @@ const postRouter = express.Router();
 const putRouter = express.Router();
 const deleteRouter = express.Router();
 const HarmonyHub = require("../Model/HarmonyHub.model");
+const Joi=require('joi')
+const schema=Joi.object({
+    ID:Joi.string().required(),
+    USERNAME:Joi.string().required(),
+    EMAIL:Joi.string().required(),
+    MOVIENAME:Joi.string().required(),
+    SONGNAME:Joi.string().required(),
+    SONGLINK:Joi.string().required(),
+    LYRICSLINK:Joi.string().required(),
+    ARTIST:Joi.string().required()
+})
 
 getRouter.get('/getallharmonyhub', async (req, res) => {
     try {
@@ -36,10 +47,18 @@ getRouter.get('/getharmonyhub/:id', async (req, res) => {
 });
 
 postRouter.post('/addharmonyhub', async (req, res) => {
+    const {error, value}=schema.validate(req.body, {abortEarly:false});
     try {
+        if(!error){
         const {ID,USERNAME,EMAIL,MOVIENAME,SONGNAME,SONGLINK,LYRICSLINK,ARTIST} = req.body
         const newHarmonyHub = await HarmonyHub.create({ID,USERNAME,EMAIL,MOVIENAME,SONGNAME,SONGLINK,LYRICSLINK,ARTIST});
-        res.status(201).json(newHarmonyHub);
+        res.status(201).json(newHarmonyHub);}
+        else{
+            return res.status(400).send({
+                message: `Bad request, error:${error}`
+            })
+            console.error(error)
+        }
     } catch (err) {
         console.log(err);
         return res.status(500).send({
@@ -49,7 +68,9 @@ postRouter.post('/addharmonyhub', async (req, res) => {
 });
 
 putRouter.patch('/updateharmonyhub/:id', async (req, res) => {
+    const {error, value}=schema.validate(req.body, {abortEarly: false});
     try {
+        if(!error){
         const harmonyHubId = req.params.id;
         const updateData = req.body;
 
@@ -66,7 +87,12 @@ putRouter.patch('/updateharmonyhub/:id', async (req, res) => {
         }
 
         res.status(200).json(updatedHarmonyHub);
-    } catch (err) {
+    }else{
+        return res.status(400).send({
+            message: `Bad request, error:${error}`
+        })
+        console.error(error)
+    }}catch (err) {
         console.log(err);
         return res.status(500).send({
             message: "Internal server error"
@@ -78,7 +104,7 @@ putRouter.patch('/updateharmonyhub/:id', async (req, res) => {
 deleteRouter.delete('/deleteharmonyhub/:id', async (req, res) => {
     try {
         const harmonyHubId = req.params.id;
-        const deletedHarmonyHub = await HarmonyHub.findOneAndDelete({"ID":harmonyHubId});     
+        const deletedHarmonyHub = await HarmonyHub.findOneAndDelete({"ID":harmonyHubId});  
         res.status(200).json("deleted HarmonyHub");
     } catch (err) {
         console.log(err);

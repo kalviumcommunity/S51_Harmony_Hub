@@ -1,5 +1,4 @@
 import React,{useState} from "react";
-import './CreateUser.css'
 import axios from "axios";
 import './Hub.css'
 

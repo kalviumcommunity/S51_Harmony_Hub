@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import {BrowserRouter , Routes , Route} from 'react-router-dom'
 import Hub from './Components/Hub'
+import '../src/Components/Hub.css'
 import CreateUser from './Components/CreateUser'
 import UpdateUser from './Components/UpdateUser'
 
