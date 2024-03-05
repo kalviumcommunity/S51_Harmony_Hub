@@ -1,13 +1,17 @@
-*{
-    background-color: black;
-}
 
-
-.container{
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: skyblue;
+}
+.profile {
+    border: 1px solid  black;
+    
+}
+.head{
+    color: rgb(245, 90, 175);
 }
 
 /* .button{
@@ -19,4 +23,5 @@
 }
 .delete{
     background-color: red;
-} */
+}
+ */
