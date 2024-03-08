@@ -1,7 +1,10 @@
-import React,{useState} from 'react'
-import {useNavigate} from 'react-router-dom'
+import {useState} from 'react'
+import { useNavigate,Link } from 'react-router-dom';
+import axios from 'axios';
 
-function Login() {
+function LogInPage() {
+    const [userName,setUserName] = useState(getCookie('username'))
+    const [password,setPassword] = useState(getCookie('password'))
     const navigate = useNavigate();
     function getCookie(name) {
         let cookieArray = document.cookie.split('; ');
@@ -13,29 +16,35 @@ function Login() {
         date.setTime(date.getTime() + daysToExpire * 24 * 60 * 60 * 1000);
         document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
     }
-    const [userName,setUserName] = useState(getCookie('username'))
-    const setData=(e)=>{
-        setUserName(e.target.value);
-        console.log(e.target.value)
-    }
-    console.log(userName)
         const submit=(e)=>{
             e.preventDefault();
-            console.log("t",userName)
+            axios.post('https://football-clubs.onrender.com/login',{
+                name:userName,
+                password:password
+            }).then((response)=>{
+            setCookie('token', response.data.accessToken,365);
             setCookie('username', userName,365);
-            console.log("Test",getCookie('username'))
-            navigate("/")
+        navigate('/')}).catch((error)=>{console.error(error)});
+
         }
         return(
         <>
         <div id='Body'>
+        <div id='Navbar'>
+            <div id='Navbar-left'>
+            <Link to='/'><h1>Harmony Hub</h1></Link>
+            </div>
+        </div>
         <div id='Body-content'>
           <div id='form'>
           <form onSubmit={submit}>
             <div className='space-around'><label>User Name : </label>
-            <input type="text" onChange={setData}/></div>
-            <button type="submit">Sign In</button>
+            <input type="text" onChange={(e)=>{setUserName(e.target.value)}}/></div>
+            <div className='space-around'><label>Password : </label>
+            <input type="password" name="password" id="password" onChange={(e)=>{setPassword(e.target.value)}} /></div>
+            <button type="submit">Log In</button>
         </form>
+        <Link to='/signup'>SignUp</Link>
             </div>
         </div>
 
@@ -46,5 +55,4 @@ function Login() {
     
 }
 
-
-export default Login;
+export default LogInPage

@@ -1,27 +1,75 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
 
 .container {
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: skyblue;
 }
 .profile {
-    border: 1px solid  black;
-    
-}
-.head{
-    color: rgb(245, 90, 175);
+    border: 1px solid  white;
+    width: 20vw;
 }
 
-/* .button{
-    height: 2vh;
-    width: 6vw;
+.head{
+    color: skyblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.update{
+#Navbar-button{
+    margin-left: 93vw;
+    background-color: purple;
+}
+ body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+ .create{
+    border: 1vw solid white;
+    height: 90vh;
+    width: 30vw;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+ }
+ .create1{
+    display: flex;
+    justify-content: center;
+ }
+ .create2{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    height: 3vh;
+    width: 20vw;
+ }
+ .add-user, .div1, .div2, .div3, .div4 ,.div5, .div6, .div7 ,.div8{
+    margin-bottom: 2vh;
+ }
+ .add-user{
+    margin-left: 7vw;
+ }
+ .update-user{
+    margin-left: 6vw;
+ }
+
+ .create-submit{
     background-color: green;
-}
-.delete{
-    background-color: red;
-}
- */
+    margin-left: 7vw;
+ }
+
+ .update{
+   background-color: green;
+ }
+ .delete{
+   background-color: red;
+ }
+ .add{
+   background-color: blue;
+ }

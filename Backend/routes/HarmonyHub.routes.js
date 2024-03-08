@@ -1,10 +1,10 @@
 const express = require('express')
-
 const getRouter = express.Router();
 const postRouter = express.Router();
 const putRouter = express.Router();
 const deleteRouter = express.Router();
 const HarmonyHub = require("../Model/HarmonyHub.model");
+const jwt = require('jsonwebtoken')
 const Joi=require('joi')
 const schema=Joi.object({
     ID:Joi.string().required(),
@@ -16,8 +16,16 @@ const schema=Joi.object({
     LYRICSLINK:Joi.string().required(),
     ARTIST:Joi.string().required()
 })
-
-getRouter.get('/getallharmonyhub', async (req, res) => {
+const authenticateToken = (req, res,next) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1]
+    if(token==null) return res.sendStatus(401)
+    jwt.verify(token,process.env.ACCESS_TOKEN_SECRET,(err,user)=>{
+      if(err) return res.sendStatus(403)
+      next()
+    })
+  }
+getRouter.get('/getallharmonyhub',authenticateToken, async (req, res) => {
     try {
         const harmonyHubs = await HarmonyHub.find();
         res.status(200).json(harmonyHubs);
@@ -29,7 +37,7 @@ getRouter.get('/getallharmonyhub', async (req, res) => {
     }
 });
 
-getRouter.get('/getharmonyhub/:id', async (req, res) => {
+getRouter.get('/getharmonyhub/:id',authenticateToken, async (req, res) => {
     try {
         const harmonyHub = await HarmonyHub.findOne({ deviceId: req.params.id });
         if (!harmonyHub) {
@@ -46,7 +54,7 @@ getRouter.get('/getharmonyhub/:id', async (req, res) => {
     }
 });
 
-postRouter.post('/addharmonyhub', async (req, res) => {
+postRouter.post('/addharmonyhub',authenticateToken, async (req, res) => {
     const {error, value}=schema.validate(req.body, {abortEarly:false});
     try {
         if(!error){
@@ -67,7 +75,7 @@ postRouter.post('/addharmonyhub', async (req, res) => {
     }
 });
 
-putRouter.patch('/updateharmonyhub/:id', async (req, res) => {
+putRouter.patch('/updateharmonyhub/:id',authenticateToken, async (req, res) => {
     const {error, value}=schema.validate(req.body, {abortEarly: false});
     try {
         if(!error){
@@ -101,7 +109,7 @@ putRouter.patch('/updateharmonyhub/:id', async (req, res) => {
 });
 
 
-deleteRouter.delete('/deleteharmonyhub/:id', async (req, res) => {
+deleteRouter.delete('/deleteharmonyhub/:id',authenticateToken, async (req, res) => {
     try {
         const harmonyHubId = req.params.id;
         const deletedHarmonyHub = await HarmonyHub.findOneAndDelete({"ID":harmonyHubId});  

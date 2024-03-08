@@ -11,7 +11,12 @@ function CreateUser () {
     const [songlink,setSongLink]=useState("")
     const [lyricslink,setLyricsLink]=useState("")
     const [artist,setArtist]=useState("")
-
+    function getCookie(name) {
+        let cookieArray = document.cookie.split('; ');
+        let cookie = cookieArray.find((row) => row.startsWith(name + '='));
+        return cookie ? cookie.split('=')[1] : null;
+    }
+    const token = getCookie('token')
     const Formsubmit=(e)=>{
 
         e.preventDefault();
@@ -24,7 +29,7 @@ function CreateUser () {
         SONGLINK:songlink,
         LYRICSLINK:lyricslink,
         ARTIST:artist
-    })
+    },{headers:{authorization:`Bearer ${token}`}})
     .then((response)=>{ console.log(response.data);
     })
     .catch((error)=> console.error(error))
@@ -34,40 +39,40 @@ function CreateUser () {
         <div className="create">
             <div>
                 <form onSubmit={Formsubmit}>
-                    <h2>Add User</h2>
+                    <h2 className="add-user">Add User</h2>
                     <div className="div8">
-                        <label>Id</label>
-                        <input type="text" placeholder="Enter Id" className="details" onChange={(e)=>setId(e.target.value)}/>
+                        <label className="create1">Id</label>
+                        <input type="text" placeholder="Enter Id" className="create2" onChange={(e)=>setId(e.target.value)}/>
                     </div>
                     <div className="div1">
-                        <label>Name</label>
-                        <input type="text" placeholder="Enter Name" className="details" onChange={(e)=>setName(e.target.value)}/>
+                        <label className="create1">Name</label>
+                        <input type="text" placeholder="Enter Name" className="create2" onChange={(e)=>setName(e.target.value)}/>
                     </div>
                     <div className="div2">
-                        <label>Email</label>
-                        <input type="text" placeholder="Enter Email" className="details" onChange={(e)=>setEmail(e.target.value)}/>
+                        <label className="create1">Email</label>
+                        <input type="text" placeholder="Enter Email" className="create2" onChange={(e)=>setEmail(e.target.value)}/>
                     </div>
                     <div className="div3">
-                        <label>MovieName</label>
-                        <input type="text" placeholder="Enter MovieName" className="details" onChange={(e)=>setMovieName(e.target.value)}/>
+                        <label className="create1">MovieName</label>
+                        <input type="text" placeholder="Enter MovieName" className="create2" onChange={(e)=>setMovieName(e.target.value)}/>
                     </div>
                     <div className="div4">
-                        <label>SongName</label>
-                        <input type="text" placeholder="Enter SongName" className="details" onChange={(e)=>setSongName(e.target.value)}/>
+                        <label className="create1">SongName</label>
+                        <input type="text" placeholder="Enter SongName" className="create2" onChange={(e)=>setSongName(e.target.value)}/>
                     </div>
                     <div className="div5">
-                        <label>SongLink</label>
-                        <input type="text" placeholder="Enter SongLink" className="details" onChange={(e)=>setSongLink(e.target.value)}/>
+                        <label className="create1">SongLink</label>
+                        <input type="text" placeholder="Enter SongLink" className="create2" onChange={(e)=>setSongLink(e.target.value)}/>
                     </div>
                     <div className="div6">
-                        <label>LyricsLink</label>
-                        <input type="text" placeholder="Enter LyricsLink" className="details" onChange={(e)=>setLyricsLink(e.target.value)}/>
+                        <label className="create1">LyricsLink</label>
+                        <input type="text" placeholder="Enter LyricsLink" className="create2" onChange={(e)=>setLyricsLink(e.target.value)}/>
                     </div>
                     <div className="div7">
-                        <label>Artist</label>
-                        <input type="text" placeholder="Enter Artist" className="details" onChange={(e)=>setArtist(e.target.value)}/>
+                        <label className="create1">Artist</label>
+                        <input type="text" placeholder="Enter Artist" className="create2" onChange={(e)=>setArtist(e.target.value)}/>
                     </div>
-                    <button type="submit" className="submit">Submit</button>
+                    <button type="submit" className="create-submit">Submit</button>
                 </form>
             </div>
         </div>

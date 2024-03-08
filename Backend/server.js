@@ -6,13 +6,16 @@ const mongoose=require("mongoose")
 const cors = require('cors')
 const {connectDB,isConnectedNow}=require('./config/dbConn.js')
 app.use(cors())
-const { getRouter, postRouter, deleteRouter, putRouter }=require("./routes/HarmonyHub.routes.js")
+const { getRouter, postRouter, deleteRouter, putRouter }=require("./routes/HarmonyHub.routes.js");
+const { signup, login } = require("./routes/AuthServer.js");
 app.use(bodyParser.json())
+app.use(express.json())
 app.use("/",getRouter)
 app.use("/",postRouter)
 app.use("/",deleteRouter)
 app.use("/",putRouter)
-
+app.use("/",signup)
+app.use("/",login)
 
 
 app.get('/ping', (req,res) =>{

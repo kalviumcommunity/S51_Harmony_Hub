@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
-function Logout() {
+function LogOutPage() {
     const navigate = useNavigate();
     function setCookie(name, value, daysToExpire) {
         let date = new Date();
@@ -16,11 +16,18 @@ function Logout() {
     const signOut=()=>{
       console.log("Test",getCookie('username'))
         setCookie('username', "", 0)
+        setCookie('token', "", 0)
         console.log("Test",getCookie('username'))
         navigate('/')
     }
   return (
     <div id='Body'>
+              <div id='Navbar'>
+            <div id='Navbar-left'>
+            <Link to='/'><h1>Football Clubs</h1></Link>
+            </div>
+            <div></div>
+        </div>
         <div id='Body-content'>
       <h1>Log Out</h1>
       <button onClick={signOut}>Log Out</button></div>
@@ -28,4 +35,4 @@ function Logout() {
   )
 }
 
-export default Logout
+export default LogOutPage
