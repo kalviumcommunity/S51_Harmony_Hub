@@ -6,27 +6,33 @@ import Welcome from "./Sub-component/Welcome"
 
 function Hub (){
     const[data,setData]=useState([])
+    function getCookie(name) {
+        let cookieArray = document.cookie.split('; ');
+        let cookie = cookieArray.find((row) => row.startsWith(name + '='));
+        return cookie ? cookie.split('=')[1] : null;
+    }
+    const token = getCookie('token')
     useEffect(()=>{
-        axios.get('https://s51-harmony-hub.onrender.com/getallharmonyhub')
+        axios.get('https://s51-harmony-hub.onrender.com/getallharmonyhub',{headers:{authorization:`Bearer ${token}`}})
         .then((response)=> {setData(response.data);
         console.log(response.data)})
         .catch(error =>console.error(error))
     }, []);
 
     const deleteData=(id)=>{
-        axios.delete(`https://s51-harmony-hub.onrender.com/deleteharmonyhub/${id}`,)
+        axios.delete(`https://s51-harmony-hub.onrender.com/deleteharmonyhub/${id}`,{headers:{authorization:`Bearer ${token}`}})
         .then((response)=>{ console.log(response.data);
             window.location.reload()})
-        .catch((error)=> console.error(error)) 
-              
+        .catch((error)=> console.error(error))       
     }
-
     return (
         <>
-        <div className="container">
         <h1 className="head">Profile</h1>
+        <div className="container">
         <Welcome/>
-
+        <Link to='/create'><button className="add">Add+</button></Link>
+        {(data.length > 1) ?
+<div>
         {data.map((profile,index)=>(
             <div key={index} className="profile">
                 <div className="details">
@@ -60,11 +66,14 @@ function Hub (){
                 </div>
                                
             </div>
-        ))}
+        ))}</div>:<div id='Body-content'>
+        <div id="login">
+        <h1>Please Login To Continue</h1>
+        </div>
+      </div>}
         </div>
         
         </>
     )
 }
-
 export default Hub;

@@ -7,6 +7,7 @@ import CreateUser from './Components/CreateUser'
 import UpdateUser from './Components/UpdateUser'
 import Login from './Components/Login'
 import Logout from './Components/Logout'
+import SignupPage from './Components/SignupPage'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path='/update' element={<UpdateUser/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/logout' element={<Logout/>}></Route>
+        <Route path='/signup' element={<SignupPage/>}></Route>
       </Routes>
       </BrowserRouter>
     </>
