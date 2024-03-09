@@ -24,7 +24,7 @@ function LogOutPage() {
     <div id='Body'>
               <div id='Navbar'>
             <div id='Navbar-left'>
-            <Link to='/'><h1>Football Clubs</h1></Link>
+            <Link to='/'><h1>Harmony Hub</h1></Link>
             </div>
             <div></div>
         </div>
