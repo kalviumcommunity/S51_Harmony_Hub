@@ -6,7 +6,7 @@ const deleteRouter = express.Router();
 const HarmonyHub = require("../Model/HarmonyHub.model");
 const jwt = require('jsonwebtoken')
 const Joi=require('joi')
-
+require('dotenv').config()
 const schema=Joi.object({
     ID:Joi.string().required(),
     USERNAME:Joi.string().required(),
