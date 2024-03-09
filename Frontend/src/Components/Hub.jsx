@@ -6,6 +6,7 @@ import Welcome from "./Sub-component/Welcome"
 
 function Hub (){
     const[data,setData]=useState([])
+    const [filter,setFilter] = useState("All")
     function getCookie(name) {
         let cookieArray = document.cookie.split('; ');
         let cookie = cookieArray.find((row) => row.startsWith(name + '='));
@@ -18,7 +19,14 @@ function Hub (){
         console.log(response.data)})
         .catch(error =>console.error(error))
     }, []);
-
+    const filteredData = data.filter((item)=>{
+        if(filter === "All"){
+          return item
+        }
+        else if(item.Created_by.includes(filter)){
+          return item
+        }
+      })
     const deleteData=(id)=>{
         axios.delete(`https://s51-harmony-hub.onrender.com/deleteharmonyhub/${id}`,{headers:{authorization:`Bearer ${token}`}})
         .then((response)=>{ console.log(response.data);
@@ -31,9 +39,17 @@ function Hub (){
         <div className="container">
         <Welcome/>
         <Link to='/create'><button className="add">Add+</button></Link>
+        <p> Created By :   </p> 
+            <select name="Created_by" id="Created_by" onChange={(e)=>{setFilter(e.target.value)}}>
+              <option value="All">All</option>
+              <option value="Raghavendar">Raghavendar</option>
+              <option value="Goutham">Goutham</option>
+              <option value="Esther">Esther</option>
+              <option value="Nithya">Nithya</option>
+            </select>
         {(data.length > 1) ?
 <div>
-        {data.map((profile,index)=>(
+        {filteredData.map((profile,index)=>(
             <div key={index} className="profile">
                 <div className="details">
                     <p>ID: </p> { profile.ID}
@@ -59,7 +75,9 @@ function Hub (){
                 <div className="details">
                     <p>ARTIST:  </p> {profile.ARTIST}
                 </div>
-
+                <div className="details">
+                    <p>Created_by:  </p> {profile.Created_by}
+                </div>
                 <div className="button">
                 <Link to='/update'><button className="update">Update</button></Link>
                 <button className="delete" onClick={(e)=>deleteData(profile.ID)}>Delete</button>
