@@ -19,14 +19,13 @@ function Hub (){
         console.log(response.data)})
         .catch(error =>console.error(error))
     }, []);
-    const filteredData = data.filter((item)=>{
-        if(filter === "All"){
-          return item
+    const filteredData = data.filter((item) => {
+        if (filter === "All") {
+          return item;
+        } else if (item.Created_by && item.Created_by.includes(filter)) {
+          return item;
         }
-        else if(item.Created_by.includes(filter)){
-          return item
-        }
-      })
+      });
     const deleteData=(id)=>{
         axios.delete(`https://s51-harmony-hub.onrender.com/deleteharmonyhub/${id}`,{headers:{authorization:`Bearer ${token}`}})
         .then((response)=>{ console.log(response.data);
@@ -39,7 +38,7 @@ function Hub (){
         <div className="container">
         <Welcome/>
         <Link to='/create'><button className="add">Add+</button></Link>
-        <p> Created By :   </p> 
+        <p> Created By : </p> 
             <select name="Created_by" id="Created_by" onChange={(e)=>{setFilter(e.target.value)}}>
               <option value="All">All</option>
               <option value="Raghavendar">Raghavendar</option>
@@ -48,9 +47,9 @@ function Hub (){
               <option value="Nithya">Nithya</option>
             </select>
         {(data.length > 1) ?
-<div>
+<div className="profile">
         {filteredData.map((profile,index)=>(
-            <div key={index} className="profile">
+            <div key={index} >
                 <div className="details">
                     <p>ID: </p> { profile.ID}
                 </div>
@@ -78,8 +77,8 @@ function Hub (){
                 <div className="details">
                     <p>Created_by:  </p> {profile.Created_by}
                 </div>
-                <div className="button">
-                <Link to='/update'><button className="update">Update</button></Link>
+                <div className="details">
+                <Link to={`/update/${profile.ID}`} state={profile}><button id="update">Update</button></Link>
                 <button className="delete" onClick={(e)=>deleteData(profile.ID)}>Delete</button>
                 </div>
                                

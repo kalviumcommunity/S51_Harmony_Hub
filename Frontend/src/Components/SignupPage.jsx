@@ -18,9 +18,9 @@ function SignupPage() {
     }
         const submit=(e)=>{
             e.preventDefault();
-            axios.post('https://football-clubs.onrender.com/signup',{
-                name:userName,
-                password:password
+            axios.post('https://s51-harmony-hub.onrender.com/signup',{
+                Name:userName,
+                Password:password
             }).then((response)=>{console.log(response);
                 setCookie('token', response.data.accessToken,365)
                 setCookie('username',userName,365);
@@ -38,7 +38,7 @@ function SignupPage() {
         <div id='Body-content'>
           <div id='form'>
           <form onSubmit={submit}>
-            <div className='space-around'><label>User Name : </label>
+            <div className='space-around'><label>Name : </label>
             <input type="text" onChange={(e)=>{setUserName(e.target.value)}}/></div>
             <div className='space-around'><label>Password : </label>
             <input type="password" name="password" id="password" onChange={(e)=>{setPassword(e.target.value)}} /></div>
