@@ -11,7 +11,6 @@ function Welcome() {
         <h3>Welcome {getCookie('username')}</h3>
         <Link to="/logout"><button id='Navbar-button'>Logout</button></Link>
         </>)}
-    
       else{return(
       <Link to="/login"><button id='Navbar-button'>Login</button></Link>)}}
 

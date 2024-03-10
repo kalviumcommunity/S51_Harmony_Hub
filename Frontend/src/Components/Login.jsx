@@ -18,13 +18,15 @@ function LogInPage() {
     }
         const submit=(e)=>{
             e.preventDefault();
-            axios.post('https://football-clubs.onrender.com/login',{
+            axios.post('https://s51-harmony-hub.onrender.com/login',{
                 name:userName,
                 password:password
             }).then((response)=>{
+                console.log(response.data.accessToken)
             setCookie('token', response.data.accessToken,365);
             setCookie('username', userName,365);
-        navigate('/')}).catch((error)=>{console.error(error)});
+            navigate('/');
+       }).catch((error)=>{console.error(error)});
 
         }
         return(

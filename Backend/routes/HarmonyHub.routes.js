@@ -5,6 +5,7 @@ const putRouter = express.Router();
 const deleteRouter = express.Router();
 const HarmonyHub = require("../Model/HarmonyHub.model");
 const jwt = require('jsonwebtoken')
+require('dotenv').config()
 const Joi=require('joi')
 const schema=Joi.object({
     ID:Joi.string().required(),
@@ -14,14 +15,15 @@ const schema=Joi.object({
     SONGNAME:Joi.string().required(),
     SONGLINK:Joi.string().required(),
     LYRICSLINK:Joi.string().required(),
-    ARTIST:Joi.string().required()
+    ARTIST:Joi.string().required(),
+    Created_by:Joi.string().required()
 })
 const authenticateToken = (req, res,next) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1]
     if(token==null) return res.sendStatus(401)
     jwt.verify(token,process.env.ACCESS_TOKEN_SECRET,(err,user)=>{
-      if(err) return res.sendStatus(403)
+      if(err) return res.status(403).send(err)
       next()
     })
   }
@@ -58,8 +60,8 @@ postRouter.post('/addharmonyhub',authenticateToken, async (req, res) => {
     const {error, value}=schema.validate(req.body, {abortEarly:false});
     try {
         if(!error){
-        const {ID,USERNAME,EMAIL,MOVIENAME,SONGNAME,SONGLINK,LYRICSLINK,ARTIST} = req.body
-        const newHarmonyHub = await HarmonyHub.create({ID,USERNAME,EMAIL,MOVIENAME,SONGNAME,SONGLINK,LYRICSLINK,ARTIST});
+        const {ID,USERNAME,EMAIL,MOVIENAME,SONGNAME,SONGLINK,LYRICSLINK,ARTIST,Created_by} = req.body
+        const newHarmonyHub = await HarmonyHub.create({ID,USERNAME,EMAIL,MOVIENAME,SONGNAME,SONGLINK,LYRICSLINK,ARTIST,Created_by});
         res.status(201).json(newHarmonyHub);}
         else{
             return res.status(400).send({

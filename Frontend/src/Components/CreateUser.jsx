@@ -11,6 +11,7 @@ function CreateUser () {
     const [songlink,setSongLink]=useState("")
     const [lyricslink,setLyricsLink]=useState("")
     const [artist,setArtist]=useState("")
+    const [createdBy,setCreatedBy]=useState("")
     function getCookie(name) {
         let cookieArray = document.cookie.split('; ');
         let cookie = cookieArray.find((row) => row.startsWith(name + '='));
@@ -28,9 +29,11 @@ function CreateUser () {
         SONGNAME:songname,
         SONGLINK:songlink,
         LYRICSLINK:lyricslink,
-        ARTIST:artist
+        ARTIST:artist,
+        Created_by:createdBy
     },{headers:{authorization:`Bearer ${token}`}})
     .then((response)=>{ console.log(response.data);
+        navigate('/')
     })
     .catch((error)=> console.error(error))
     }
@@ -71,6 +74,10 @@ function CreateUser () {
                     <div className="div7">
                         <label className="create1">Artist</label>
                         <input type="text" placeholder="Enter Artist" className="create2" onChange={(e)=>setArtist(e.target.value)}/>
+                    </div>
+                    <div className="div7">
+                        <label className="create1">Created by</label>
+                        <input type="text" placeholder="Enter Artist" className="create2" onChange={(e)=>setCreatedBy(e.target.value)}/>
                     </div>
                     <button type="submit" className="create-submit">Submit</button>
                 </form>

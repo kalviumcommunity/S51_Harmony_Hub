@@ -9,7 +9,8 @@ const userInfo=mongoose.Schema({
     SONGNAME:{type:String},
     SONGLINK:{type:String},
     LYRICSLINK:{type:String},
-    ARTIST:{type:String}
+    ARTIST:{type:String},
+    Created_by:{type:String}
 },{
     timestamps:true
 });

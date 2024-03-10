@@ -5,14 +5,29 @@
 }
 
 .container {
-    display: grid;
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
+
+.details{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
 .profile {
-    border: 1px solid  white;
-    width: 20vw;
+   display: grid;
+   grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
+   grid-column-gap: 2vh; 
+   grid-row-gap: 2vh;
+   justify-content: center;
+   align-items: center;
+}
+
+.profile > * {
+   border: 1px solid white;
 }
 
 .head{
@@ -73,3 +88,21 @@
  .add{
    background-color: blue;
  }
+
+ #Body-content{
+   display: flex;
+   justify-content: space-evenly;
+   align-items: center;
+   font-size: 1.5vw;
+
+ }
+ #Navbar{
+   margin-bottom: 10vh;
+ }
+.user{
+   height: 4vh;
+   width: 5vw;
+}
+.login1{
+   margin-left: 2vw;
+}

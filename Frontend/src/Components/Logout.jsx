@@ -29,7 +29,6 @@ function LogOutPage() {
             <div></div>
         </div>
         <div id='Body-content'>
-      <h1>Log Out</h1>
       <button onClick={signOut}>Log Out</button></div>
     </div>
   )
