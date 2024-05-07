@@ -38,8 +38,8 @@ function Hub (){
         <div className="container">
         <Welcome/>
         <Link to='/create'><button className="add">Add+</button></Link>
-        <p> Created By : </p> 
-            <select name="Created_by" id="Created_by" onChange={(e)=>{setFilter(e.target.value)}}>
+        <p className="created"> Created By : </p> 
+            <select className="created" name="Created_by" id="Created_by" onChange={(e)=>{setFilter(e.target.value)}}>
               <option value="All">All</option>
               <option value="Raghavendar">Raghavendar</option>
               <option value="Goutham">Goutham</option>

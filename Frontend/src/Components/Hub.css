@@ -19,7 +19,7 @@
 
 .profile {
    display: grid;
-   grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
+   grid-template-columns: repeat(2, 2fr); /* Three columns with equal width */
    grid-column-gap: 2vh; 
    grid-row-gap: 2vh;
    justify-content: center;
@@ -37,7 +37,7 @@
     align-items: center;
 }
 #Navbar-button{
-    margin-left: 93vw;
+    margin-left: 90vw;
     background-color: purple;
 }
  body{
@@ -65,7 +65,7 @@
     width: 20vw;
  }
  .add-user, .div1, .div2, .div3, .div4 ,.div5, .div6, .div7 ,.div8{
-    margin-bottom: 2vh;
+    margin-bottom: 1vh;
  }
  .add-user{
     margin-left: 7vw;
@@ -82,6 +82,10 @@
  .update{
    background-color: green;
  }
+ #update{
+   background-color: green;
+   margin: 2vh;
+}
  .delete{
    background-color: red;
  }
@@ -105,4 +109,8 @@
 }
 .login1{
    margin-left: 2vw;
+}
+.created{
+   margin-right: 70vw;
+   margin-top: 2vh;
 }
