@@ -7,6 +7,7 @@ import CreateUser from './Components/CreateUser'
 import UpdateUser from './Components/UpdateUser'
 import Login from './Components/Login'
 import Logout from './Components/Logout'
+import About from './Components/About'
 import SignupPage from './Components/SignupPage'
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/logout' element={<Logout/>}></Route>
         <Route path='/signup' element={<SignupPage/>}></Route>
+        <Route path='/about' element={<About/>}></Route>
       </Routes>
       </BrowserRouter>
     </>
